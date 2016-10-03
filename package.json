@@ -1,0 +1,16 @@
+{
+  "name": "team-timings",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "author": "Phill Sparks",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "eslint": "^3.7.0",
+    "eslint-config-google": "^0.6.0"
+  }
+}
