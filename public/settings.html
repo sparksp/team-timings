@@ -14,7 +14,47 @@
       .pure-controls {
         margin-top: 1em;
       }
+      .pure-button {
+        border-radius: 4px;
+      }
     </style>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      $(function() {
+        function createBase() {
+          var container = $('<div class="pure-g">');
+          var labelWrapper = $('<div class="pure-u-1-2 pure-u-md-1-4">');
+          container.append(labelWrapper);
+          var labelInput = $('<input class="pure-input-1" type="text" name="baseLabels[]" placeholder="Base Label" required>');
+          labelWrapper.append(labelInput);
+
+          var timeWrapper = $('<div class="pure-u-1-2 pure-u-md-1-4">');
+          container.append(timeWrapper);
+          var timeInput = $('<input class="pure-input-1-2" type="text" name="journeyTimes[]" placeholder="0:25:00" pattern="(\d+:)?\d\d?:\d\d" required>');
+          timeWrapper.append(timeInput);
+
+          return container;
+        }
+
+        var baseList = $(".base-list");
+        baseList.after(function() {
+          var container = $('<div class="pure-g">');
+          var wrapper = $('<div class="pure-u-1-2 pure-u-md-1-4">');
+          container.append(wrapper);
+          var addButton = $('<a href="#" class="pure-button">Add Base</a>');
+          wrapper.append(addButton);
+
+          addButton.click(function(event) {
+            event.preventDefault();
+            var newBase = createBase();
+            baseList.append(newBase);
+            newBase.find("input").first().focus();
+          });
+
+          return container;
+        });
+      });
+    </script>
   </head>
   <body>
     <div id="layout">
@@ -54,30 +94,23 @@
             </div>
           </div>
 
-          <div class="pure-g">
-            <div class="pure-u-1-2 pure-u-md-1-4">
-              <label class="pure-input-1">Base Label</label>
+          <div class="base-list">
+            <div class="pure-g">
+              <div class="pure-u-1-2 pure-u-md-1-4">
+                <label class="pure-input-1">Base Label</label>
+              </div>
+              <div class="pure-u-1-2 pure-u-md-1-4">
+                <label>Time to next base</label>
+              </div>
             </div>
-            <div class="pure-u-1-2 pure-u-md-1-4">
-              <label>Time to next base</label>
-            </div>
-          </div>
 
-          <div class="pure-g">
-            <div class="pure-u-1-2 pure-u-md-1-4">
-              <input class="pure-input-1" id="hqLabel" name="" type="text" readonly value="HQ">
-            </div>
-            <div class="pure-u-1-2 pure-u-md-1-4">
-              <input class="pure-input-1-2" type="text" id="journeyTime0" name="journeyTimes[]" placeholder="0:25:00" pattern="(\d+:)?\d\d?:\d\d" required>
-            </div>
-          </div>
-
-          <div class="pure-g">
-            <div class="pure-u-1-2 pure-u-md-1-4">
-              <input class="pure-input-1" type="text" id="baseLabel0" name="baseLabels[]" placeholder="Base 1" required>
-            </div>
-            <div class="pure-u-1-2 pure-u-md-1-4">
-              <input class="pure-input-1-2" type="text" id="journeyTime1" name="journeyTimes[]" placeholder="0:25:00" pattern="(\d+:)?\d\d?:\d\d" required>
+            <div class="pure-g">
+              <div class="pure-u-1-2 pure-u-md-1-4">
+                <input class="pure-input-1" type="text" name="" value="HQ" readonly>
+              </div>
+              <div class="pure-u-1-2 pure-u-md-1-4">
+                <input class="pure-input-1-2" type="text" name="journeyTimes[]" placeholder="0:25:00" pattern="(\d+:)?\d\d?:\d\d" required>
+              </div>
             </div>
           </div>
 
