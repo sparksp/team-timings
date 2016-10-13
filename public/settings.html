@@ -23,13 +23,13 @@
       $(function() {
         function createContainer() {
           return $.extend(document.createElement('div'), {
-            className: 'pure-g'
+            className: 'pure-g container'
           });
         }
 
         function createWrapper() {
           return $.extend(document.createElement('div'), {
-            className: 'pure-u-1-2 pure-u-md-1-4'
+            className: 'pure-u-1-2 pure-u-md-1-4 wrapper'
           });
         }
 
@@ -54,14 +54,6 @@
           });
         }
 
-        function createAddButton() {
-          var addButton = $.extend(document.createElement('a'), {
-            className: 'pure-button'
-          });
-          addButton.appendChild(document.createTextNode('Add Base'));
-          return addButton;
-        }
-
         function createBase() {
           var container = createContainer();
 
@@ -76,22 +68,30 @@
           return container;
         }
 
-        var $baseList = $(".base-list");
-        $baseList.after(function() {
+        function createAddButton() {
+          var addButton = $.extend(document.createElement('a'), {
+            className: 'pure-button button-add-base'
+          });
+          addButton.appendChild(document.createTextNode('Add Base'));
+          return addButton;
+        }
+
+        function createWrappedAddButton() {
           var container = createContainer();
           var wrapper = createWrapper();
+          wrapper.appendChild(createAddButton());
           container.appendChild(wrapper);
-          var addButton = createAddButton();
-          wrapper.appendChild(addButton);
-
-          $(addButton).click(function(event) {
-            event.preventDefault();
-            var newBase = createBase();
-            $baseList.append(newBase);
-            newBase.querySelector("input").focus();
-          });
 
           return container;
+        }
+
+        $(".base-list").append(createWrappedAddButton);
+
+        $(".button-add-base").click(function(event) {
+          event.preventDefault();
+          var newBase = createBase();
+          $(this).closest('.container').before(newBase);
+          newBase.querySelector("input").focus();
         });
       });
     </script>
