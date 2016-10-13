@@ -76,8 +76,8 @@
           return container;
         }
 
-        var baseList = $(".base-list");
-        baseList.after(function() {
+        var $baseList = $(".base-list");
+        $baseList.after(function() {
           var container = createContainer();
           var wrapper = createWrapper();
           container.appendChild(wrapper);
@@ -87,7 +87,7 @@
           $(addButton).click(function(event) {
             event.preventDefault();
             var newBase = createBase();
-            baseList.append(newBase);
+            $baseList.append(newBase);
             newBase.getElementsByTagName("input")[0].focus();
           });
 
