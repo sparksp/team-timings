@@ -22,41 +22,42 @@
     <script type="text/javascript">
       $(function() {
         function createContainer() {
-          var container = document.createElement('div');
-          container.className = 'pure-g';
-          return container;
+          return $.extend(document.createElement('div'), {
+            className: 'pure-g'
+          });
         }
 
         function createWrapper() {
-          var wrapper = document.createElement('div');
-          wrapper.className = 'pure-u-1-2 pure-u-md-1-4';
-          return wrapper;
+          return $.extend(document.createElement('div'), {
+            className: 'pure-u-1-2 pure-u-md-1-4'
+          });
         }
 
         function createLabelInput() {
-          var labelInput = document.createElement('input');
-          labelInput.className = 'pure-input-1';
-          labelInput.type = 'text';
-          labelInput.name = 'baseLabels[]';
-          labelInput.placeholder = 'Base Label';
-          labelInput.required = true;
-          return labelInput;
+          return $.extend(document.createElement('input'), {
+            className: 'pure-input-1',
+            type: 'text',
+            name: 'baseLabels[]',
+            placeholder: 'Base Label',
+            required: true
+          });
         }
 
         function createTimeInput() {
-          var timeInput = document.createElement('input');
-          timeInput.className = 'pure-input-1-2';
-          timeInput.type = 'text';
-          timeInput.name = 'journeyTimes[]';
-          timeInput.placeholder = '0:25:00';
-          timeInput.pattern = '(\d+:)?\d\d?:\d\d';
-          timeInput.required = true;
-          return timeInput;
+          return $.extend(document.createElement('input'), {
+            className: 'pure-input-1-2',
+            type: 'text',
+            name: 'journeyTimes[]',
+            placeholder: '0:25:00',
+            pattern: '(\d+:)?\d\d?:\d\d',
+            required: true
+          });
         }
 
         function createAddButton() {
-          var addButton = document.createElement('a');
-          addButton.className = 'pure-button';
+          var addButton = $.extend(document.createElement('a'), {
+            className: 'pure-button'
+          });
           addButton.appendChild(document.createTextNode('Add Base'));
           return addButton;
         }
