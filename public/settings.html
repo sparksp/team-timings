@@ -21,34 +21,73 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
     <script type="text/javascript">
       $(function() {
-        function createBase() {
-          var container = $('<div class="pure-g">');
-          var labelWrapper = $('<div class="pure-u-1-2 pure-u-md-1-4">');
-          container.append(labelWrapper);
-          var labelInput = $('<input class="pure-input-1" type="text" name="baseLabels[]" placeholder="Base Label" required>');
-          labelWrapper.append(labelInput);
+        function createContainer() {
+          var container = document.createElement('div');
+          container.className = 'pure-g';
+          return container;
+        }
 
-          var timeWrapper = $('<div class="pure-u-1-2 pure-u-md-1-4">');
-          container.append(timeWrapper);
-          var timeInput = $('<input class="pure-input-1-2" type="text" name="journeyTimes[]" placeholder="0:25:00" pattern="(\d+:)?\d\d?:\d\d" required>');
-          timeWrapper.append(timeInput);
+        function createWrapper() {
+          var wrapper = document.createElement('div');
+          wrapper.className = 'pure-u-1-2 pure-u-md-1-4';
+          return wrapper;
+        }
+
+        function createLabelInput() {
+          var labelInput = document.createElement('input');
+          labelInput.className = 'pure-input-1';
+          labelInput.type = 'text';
+          labelInput.name = 'baseLabels[]';
+          labelInput.placeholder = 'Base Label';
+          labelInput.required = true;
+          return labelInput;
+        }
+
+        function createTimeInput() {
+          var timeInput = document.createElement('input');
+          timeInput.className = 'pure-input-1-2';
+          timeInput.type = 'text';
+          timeInput.name = 'journeyTimes[]';
+          timeInput.placeholder = '0:25:00';
+          timeInput.pattern = '(\d+:)?\d\d?:\d\d';
+          timeInput.required = true;
+          return timeInput;
+        }
+
+        function createAddButton() {
+          var addButton = document.createElement('a');
+          addButton.className = 'pure-button';
+          addButton.appendChild(document.createTextNode('Add Base'));
+          return addButton;
+        }
+
+        function createBase() {
+          var container = createContainer();
+
+          var labelWrapper = createWrapper();
+          labelWrapper.appendChild(createLabelInput());
+          container.appendChild(labelWrapper);
+
+          var timeWrapper = createWrapper();
+          container.appendChild(timeWrapper);
+          timeWrapper.appendChild(createTimeInput());
 
           return container;
         }
 
         var baseList = $(".base-list");
         baseList.after(function() {
-          var container = $('<div class="pure-g">');
-          var wrapper = $('<div class="pure-u-1-2 pure-u-md-1-4">');
-          container.append(wrapper);
-          var addButton = $('<a href="#" class="pure-button">Add Base</a>');
-          wrapper.append(addButton);
+          var container = createContainer();
+          var wrapper = createWrapper();
+          container.appendChild(wrapper);
+          var addButton = createAddButton();
+          wrapper.appendChild(addButton);
 
-          addButton.click(function(event) {
+          $(addButton).click(function(event) {
             event.preventDefault();
             var newBase = createBase();
             baseList.append(newBase);
-            newBase.find("input").first().focus();
+            newBase.getElementsByTagName("input")[0].focus();
           });
 
           return container;
