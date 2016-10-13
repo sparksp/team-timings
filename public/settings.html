@@ -88,7 +88,7 @@
             event.preventDefault();
             var newBase = createBase();
             $baseList.append(newBase);
-            newBase.getElementsByTagName("input")[0].focus();
+            newBase.querySelector("input").focus();
           });
 
           return container;
