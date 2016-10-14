@@ -37,7 +37,7 @@
           return $.extend(document.createElement('input'), {
             className: 'pure-input-1',
             type: 'text',
-            name: 'baseLabels[]',
+            name: 'baseLabels',
             placeholder: 'Base Label',
             required: true
           });
@@ -47,7 +47,7 @@
           return $.extend(document.createElement('input'), {
             className: 'pure-input-1-2',
             type: 'text',
-            name: 'journeyTimes[]',
+            name: 'journeyTimes',
             placeholder: '0:25:00',
             pattern: '(\\d+:)?\\d\\d?:\\d\\d',
             required: true
@@ -149,7 +149,7 @@
                 <input class="pure-input-1" type="text" name="" value="HQ" readonly>
               </div>
               <div class="pure-u-1-2 pure-u-md-1-4">
-                <input class="pure-input-1-2" type="text" name="journeyTimes[]" placeholder="0:25:00" pattern="(\d+:)?\d\d?:\d\d" required>
+                <input class="pure-input-1-2" type="text" name="journeyTimes" placeholder="0:25:00" pattern="(\d+:)?\d\d?:\d\d" required>
               </div>
             </div>
           </div>
