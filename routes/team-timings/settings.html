@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Team Timings</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/yahoo/pure-release/v0.6.0/pure-min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/yahoo/pure-release/v0.6.0/grids-responsive-min.css">
+    <link rel="stylesheet" href="/css/settings.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="/js/settings.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="layout">
+      <h1>Team Timings</h1>
+      <form class="pure-form pure-form-stacked team-timings" action="/" method="post">
+        <fieldset>
+          <legend>Settings</legend>
+
+          <div class="pure-g">
+            <div class="pure-u-1">
+              <label for="startTime">Start time</label>
+              <input type="text" id="startTime" name="startTime" placeholder="08:00:00" pattern="\d\d:\d\d:\d\d" required>
+            </div>
+
+            <div class="pure-u-1">
+              <label for="timeBetweenTeams">Time between teams</label>
+              <input type="text" id="timeBetweenTeams" name="timeBetweenTeams" placeholder="0:10:00" pattern="(\d+:)?\d\d?:\d\d" required>
+            </div>
+
+            <div class="pure-u-1">
+              <label for="directions">Directions</label>
+              <select id="directions" name="directions" required>
+                <option value=""></option>
+                <option value="2">2-way</option>
+                <option value="1">1-way</option>
+              </select>
+            </div>
+
+            <div class="pure-u-1">
+              <label for="teamCount">Number of teams</label>
+              <input type="number" id="teamCount" name="teamCount" min="1" step="1" placeholder="20" required>
+            </div>
+
+            <div class="pure-u-1">
+              <label for="baseDuration">Time at each base</label>
+              <input type="text" id="baseDuration" name="baseDuration" placeholder="0:20:00" pattern="(\d+:)?\d\d?:\d\d" required>
+            </div>
+          </div>
+
+          <div class="base-list">
+            <div class="pure-g">
+              <div class="pure-u-1-2 pure-u-md-1-4">
+                <label class="pure-input-1">Base Label</label>
+              </div>
+              <div class="pure-u-1-2 pure-u-md-1-4">
+                <label>Time to next base</label>
+              </div>
+            </div>
+
+            <div class="pure-g">
+              <div class="pure-u-1-2 pure-u-md-1-4">
+                <input class="pure-input-1" type="text" name="" value="HQ" readonly>
+              </div>
+              <div class="pure-u-1-2 pure-u-md-1-4">
+                <input class="pure-input-1-2" type="text" name="journeyTimes" placeholder="0:25:00" pattern="(\d+:)?\d\d?:\d\d" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </body>
+</html>
