@@ -6,6 +6,7 @@
   "scripts": {
     "test": "ava"
   },
+  "repository": "sparksp/team-timings",
   "author": "Phill Sparks",
   "license": "MIT",
   "devDependencies": {
