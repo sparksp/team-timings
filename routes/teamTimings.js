@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var toArray = require('../lib/to-array');
 var teamTimingsCsv = require('../lib/team-timings-csv');
+var convertDirections = require('../lib/convert-directions');
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 var router = express.Router();
@@ -13,15 +14,6 @@ router.get('/', (req, res) => {
     root: __dirname
   });
 });
-
-var convertDirections = function(numberOfDirections) {
-  numberOfDirections = parseInt(numberOfDirections, 10) || 1;
-  var directions = ["CW"];
-  if (numberOfDirections === 2) {
-    directions.push("ACW");
-  }
-  return directions;
-};
 
 var mapOptions = function(data) {
   return {
