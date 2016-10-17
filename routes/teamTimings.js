@@ -2,10 +2,8 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
-var csvWriter = require('csv-write-stream');
-var headers = require('../lib/headers');
-var row = require('../lib/row');
 var toArray = require('../lib/to-array');
+var teamTimingsCsv = require('../lib/team-timings-csv');
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 var router = express.Router();
@@ -15,20 +13,6 @@ router.get('/', (req, res) => {
     root: __dirname
   });
 });
-
-var teamTimingsCsv = function(pipe, options) {
-  var writer = csvWriter({
-    headers: headers(options)
-  });
-  writer.pipe(pipe);
-
-  for (let i = 0; i < options.teamCount; i++) {
-    let direction = options.directions[i % options.directions.length];
-    writer.write(row(options, i, direction, direction === "ACW"));
-  }
-
-  writer.end();
-};
 
 var convertDirections = function(numberOfDirections) {
   numberOfDirections = parseInt(numberOfDirections, 10) || 1;
