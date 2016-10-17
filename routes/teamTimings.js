@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var csvWriter = require('csv-write-stream');
 var headers = require('../lib/headers');
 var row = require('../lib/row');
+var toArray = require('../lib/to-array');
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 var router = express.Router();
@@ -27,16 +28,6 @@ var teamTimingsCsv = function(pipe, options) {
   }
 
   writer.end();
-};
-
-var toArray = function(array) {
-  if (Array.isArray(array)) {
-    return array;
-  }
-  if (typeof array === 'undefined') {
-    return [];
-  }
-  return [array];
 };
 
 var convertDirections = function(numberOfDirections) {
