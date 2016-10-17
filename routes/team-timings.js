@@ -9,7 +9,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 var router = express.Router();
 
 router.get('/', (req, res) => {
-  res.sendFile('teamTimings/settings.html', {
+  res.sendFile('team-timings/settings.html', {
     root: __dirname
   });
 });

@@ -3,7 +3,7 @@
 import test from 'ava';
 import request from 'supertest';
 import express from 'express';
-import routes from './teamTimings';
+import routes from './team-timings';
 
 function makeApp() {
   const app = express();

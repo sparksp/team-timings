@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var teamTimings = require('./routes/teamTimings');
+var teamTimings = require('./routes/team-timings');
 
 var app = express();
 app.use('/', teamTimings);
