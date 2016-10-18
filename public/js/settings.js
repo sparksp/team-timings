@@ -1,13 +1,13 @@
 jQuery(function($) {
-  function createContainer() {
+  function createContainer(className) {
     return $.extend(document.createElement('div'), {
-      className: 'pure-g container'
+      className: 'pure-g ' + (className || 'container')
     });
   }
 
-  function createWrapper() {
+  function createWrapper(className) {
     return $.extend(document.createElement('div'), {
-      className: 'pure-u-1-2 pure-u-md-1-4 wrapper'
+      className: (className || 'pure-u-1')
     });
   }
 
@@ -23,7 +23,7 @@ jQuery(function($) {
 
   function createTimeInput() {
     return $.extend(document.createElement('input'), {
-      className: 'pure-input-1-2',
+      className: 'pure-input-1',
       type: 'text',
       name: 'journeyTimes',
       placeholder: '0:25:00',
@@ -32,16 +32,28 @@ jQuery(function($) {
     });
   }
 
-  function createBase() {
-    var container = createContainer();
+  function createRemoveButton() {
+    var removeButton = $.extend(document.createElement('a'), {
+      className: 'pure-button button-remove-base'
+    });
+    removeButton.appendChild(document.createTextNode('Remove'));
+    return removeButton;
+  }
 
-    var labelWrapper = createWrapper();
+  function createBase() {
+    var container = createContainer('base-item');
+
+    var labelWrapper = createWrapper('pure-u-1-2 pure-u-md-1-4');
     labelWrapper.appendChild(createLabelInput());
     container.appendChild(labelWrapper);
 
-    var timeWrapper = createWrapper();
+    var timeWrapper = createWrapper('pure-u-1-4 pure-u-md-1-8');
     container.appendChild(timeWrapper);
     timeWrapper.appendChild(createTimeInput());
+
+    var removeWrapper = createWrapper('pure-u-1-4 pure-u-md-1-8');
+    container.appendChild(removeWrapper);
+    removeWrapper.appendChild(createRemoveButton());
 
     return container;
   }
@@ -56,19 +68,24 @@ jQuery(function($) {
 
   function createWrappedAddButton() {
     var container = createContainer();
-    var wrapper = createWrapper();
+    var wrapper = createWrapper('pure-u-1-2 pure-u-md-1-4');
     wrapper.appendChild(createAddButton());
     container.appendChild(wrapper);
 
     return container;
   }
 
-  $(".base-list").append(createWrappedAddButton);
+  $('.base-list').append(createWrappedAddButton);
 
-  $(".button-add-base").click(function(event) {
+  $('.base-list').on('click', '.button-add-base', function(event) {
     event.preventDefault();
     var newBase = createBase();
     $(this).closest('.container').before(newBase);
-    newBase.querySelector("input").focus();
+    newBase.querySelector('input').focus();
+  });
+
+  $('.base-list').on('click', '.button-remove-base', function(event) {
+    event.preventDefault();
+    $(this).closest('.base-item').remove();
   });
 });
