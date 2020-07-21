@@ -1,9 +1,9 @@
 'use strict';
 
-import test from 'ava';
-import request from 'supertest';
-import express from 'express';
-import routes from './team-timings';
+const test = require('ava');
+const request = require('supertest');
+const express = require('express');
+const routes = require('./team-timings');
 
 function makeApp() {
   const app = express();
